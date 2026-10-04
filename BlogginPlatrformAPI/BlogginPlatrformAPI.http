@@ -1,0 +1,6 @@
+@BlogginPlatrformAPI_HostAddress = http://localhost:5049
+
+GET {{BlogginPlatrformAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
