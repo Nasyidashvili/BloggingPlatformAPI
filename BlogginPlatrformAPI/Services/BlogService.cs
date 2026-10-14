@@ -105,7 +105,7 @@ namespace BlogginPlatformAPI.Services
             }
 
             blog.Title = blogDto.Title;
-            blog.Title = blogDto.Title;
+            blog.Category = blogDto.Category;
             blog.Content = blogDto.Content;
             blog.UpdatedAt = DateTime.UtcNow;
 
