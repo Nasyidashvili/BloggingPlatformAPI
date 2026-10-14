@@ -12,5 +12,6 @@ namespace BlogginPlatformAPI.Interfaces
         public Task<BlogDto> GetBlogById(int id);
         public Task<BlogDto> UpdateBlog(int id, UpdateBlogDto blogDto);
         public Task<bool> DeleteBlog(int id);
+        public Task<List<BlogDto>> GetBlogsByTitle(string? title);
     }
 }

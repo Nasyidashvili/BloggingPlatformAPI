@@ -9,7 +9,7 @@ namespace BlogginPlatformAPI.Controllers
     [ApiController]
     [Route("api/[controller]")]
     public class BlogController : ControllerBase
-    {   
+    {
         private readonly IBlogService _blog;
 
         public BlogController(IBlogService blog)
@@ -65,7 +65,14 @@ namespace BlogginPlatformAPI.Controllers
                 return NotFound();
             }
 
-            return NoContent(); 
+            return NoContent();
+        }
+
+        [HttpGet("search")]
+        public async Task<ActionResult<IEnumerable<BlogDto>>> SearchBlog([FromQuery] string search)
+        {
+            var blogs = await _blog.GetBlogsByTitle(search);
+            return Ok(blogs);
         }
     }
 }

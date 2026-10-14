@@ -147,5 +147,26 @@ namespace BlogginPlatformAPI.Services
             await _context.SaveChangesAsync();
             return true;
         }
+
+        public async Task<List<BlogDto>> GetBlogsByTitle(string? title)
+        {
+            var query = _context.Blogs.AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(title))
+            {
+                title = title.Trim();
+                query = query.Where(b => b.Title.Contains(title));
+            }
+            return await query.Select(b => new BlogDto
+            {
+                Id = b.Id,
+                Title = b.Title,
+                Content = b.Content,
+                Category = b.Category,
+                Tags = b.Tags.Select(t => t.Tags).ToList(),
+                CreatedAt = b.CreatedAt,
+                UpdatedAt = b.UpdatedAt
+            }).ToListAsync();
+        }
     }
 }
